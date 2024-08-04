@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .column {
+            margin: 0 20px;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            border: 1px solid #999;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+        }
+        .random-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .random-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column">
+            <div class="item" id="slot_head">
+                <div class="icon">?</div>
+                <div class="label">Head</div>
+            </div>
+            <div class="item" id="slot_body">
+                <div class="icon">?</div>
+                <div class="label">Body</div>
+            </div>
+            <div class="item" id="slot_legs">
+                <div class="icon">?</div>
+                <div class="label">Legs</div>
+            </div>
+            <div class="item" id="slot_hands">
+                <div class="icon">?</div>
+                <div class="label">Hands</div>
+            </div>
+            <div class="item" id="slot_feet">
+                <div class="icon">?</div>
+                <div class="label">Boots</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="item" id="slot_weapon">
+                <div class="icon">?</div>
+                <div class="label">Sword</div>
+            </div>
+            <div class="item" id="slot_shield">
+                <div class="icon">?</div>
+                <div class="label">Shield</div>
+            </div>
+            <div class="item" id="slot_weapon_two">
+                <div class="icon">?</div>
+                <div class="label">Two Hand Weapon</div>
+            </div>
+            <div class="item" id="slot_neck">
+                <div class="icon">?</div>
+                <div class="label">Necklace</div>
+            </div>
+            <div class="item" id="slot_cape">
+                <div class="icon">?</div>
+                <div class="label">Cape</div>
+            </div>
+        </div>
+    </div>
+    <button class="random-button" onclick="randomizeItems()">Randomize Items</button>
+
+    <script>
+        async function randomizeItems() {
+            try {
+                const response = await fetch('items.json');
+                const data = await response.json();
+
+                const slots = {
+                    "slot_head": data.slot_head,
+                    "slot_cape": data.slot_cape,
+                    "slot_neck": data.slot_neck,
+                    "slot_weapon": data.slot_weapon,
+                    "slot_shield": data.slot_shield,
+                    "slot_weapon_two": data.slot_weapon_two,
+                    "slot_body": data.slot_body,
+                    "slot_legs": data.slot_legs,
+                    "slot_hands": data.slot_hands,
+                    "slot_feet": data.slot_feet
+                };
+
+                for (const slot in slots) {
+                    const items = slots[slot];
+                    const randomItem = items[Math.floor(Math.random() * items.length)];
+                    const itemElement = document.getElementById(slot);
+                    const iconElement = itemElement.querySelector('.icon');
+                    const labelElement = itemElement.querySelector('.label');
+
+                    iconElement.innerHTML = `<img src="${randomItem.img_url}" alt="${randomItem.name}">`;
+                    labelElement.innerHTML = `${labelElement.textContent.split('\n')[0]}<br>${randomItem.name}`;
+                }
+            } catch (error) {
+                console.error('Error loading items:', error);
+            }
+        }
+    </script>
+</body>
+</html>

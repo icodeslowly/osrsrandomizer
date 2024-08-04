@@ -81,62 +81,82 @@
         <div class="tagline">Roll the dice to decide your look. Pick either a sword/shield or the 2h suggestion</div>
     </div>
  <br><br><br>
-    <div class="container">
+     <div class="container">
         <div class="column">
             <div class="item" id="slot_head">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Head</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_body">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Body</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_legs">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Legs</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_hands">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Hands</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_feet">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Boots</div>
                 <div class="item-name"></div>
             </div>
         </div>
         <div class="column">
             <div class="item" id="slot_weapon">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Sword</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_shield">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Shield</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_weapon_two">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Two Hand Weapon</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_neck">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Necklace</div>
                 <div class="item-name"></div>
             </div>
             <div class="item" id="slot_cape">
-                <div class="icon">?</div>
+                <a href="#" class="icon-link" target="_blank">
+                    <div class="icon">?</div>
+                </a>
                 <div class="label">Cape</div>
                 <div class="item-name"></div>
             </div>
         </div>
-    </div>
+     </div>
     <button class="random-button" onclick="randomizeItems()">Randomize Items</button>
 
     <script>
@@ -164,6 +184,7 @@
                     const itemElement = document.getElementById(slot);
                     const iconElement = itemElement.querySelector('.icon');
                     const itemNameElement = itemElement.querySelector('.item-name');
+                    const linkElement = itemElement.querySelector('.icon-link');
 
                     // Clear previous content
                     iconElement.innerHTML = '';
@@ -172,6 +193,7 @@
                     // Add new content
                     iconElement.innerHTML = `<img src="${randomItem.img_url}" alt="${randomItem.name}">`;
                     itemNameElement.innerHTML = `${randomItem.name}`;
+                    linkElement.href = `https://oldschool.runescape.wiki/?search=${encodeURIComponent(randomItem.name)}&title=Special%3ASearch&go=Go`;
                 }
             } catch (error) {
                 console.error('Error loading items:', error);

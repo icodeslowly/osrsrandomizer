@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Display</title>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Aligns content to the top */
             height: 100vh;
-            margin: 0;
         }
         .container {
             display: flex;
@@ -57,9 +61,26 @@
         .random-button:hover {
             background-color: #45a049;
         }
+        .title {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .tagline {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 10px;
+        }
+        .header {
+            margin-top: 20px; /* Space from the top */
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="title">OSRS Randomizer</div>
+        <div class="tagline">Roll the dice to decide your look. Pick either a sword/shield or the 2h suggestion</div>
+    </div>
+ <br><br><br>
     <div class="container">
         <div class="column">
             <div class="item" id="slot_head">

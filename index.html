@@ -63,45 +63,45 @@
         <div class="column">
             <div class="item" id="slot_head">
                 <div class="icon">?</div>
-                <div class="label"><b>Head</b></div>
+                <div class="label">Head</div>
             </div>
             <div class="item" id="slot_body">
                 <div class="icon">?</div>
-                <div class="label"><b>Body</b></div>
+                <div class="label">Body</div>
             </div>
             <div class="item" id="slot_legs">
                 <div class="icon">?</div>
-                <div class="label"><b>Legs</b></div>
+                <div class="label">Legs</div>
             </div>
             <div class="item" id="slot_hands">
                 <div class="icon">?</div>
-                <div class="label"><b>Hands</b></div>
+                <div class="label">Hands</div>
             </div>
             <div class="item" id="slot_feet">
                 <div class="icon">?</div>
-                <div class="label"><b>Boots</b></div>
+                <div class="label">Boots</div>
             </div>
         </div>
         <div class="column">
             <div class="item" id="slot_weapon">
                 <div class="icon">?</div>
-                <div class="label"><b>Sword</b></div>
+                <div class="label">Sword</div>
             </div>
             <div class="item" id="slot_shield">
                 <div class="icon">?</div>
-                <div class="label"><b>Shield</b></div>
+                <div class="label">Shield</div>
             </div>
             <div class="item" id="slot_weapon_two">
                 <div class="icon">?</div>
-                <div class="label"><b>Two Hand Weapon</b></div>
+                <div class="label">Two Hand Weapon</div>
             </div>
             <div class="item" id="slot_neck">
                 <div class="icon">?</div>
-                <div class="label"><b>Necklace</b></div>
+                <div class="label">Necklace</div>
             </div>
             <div class="item" id="slot_cape">
                 <div class="icon">?</div>
-                <div class="label"><b>Cape</b></div>
+                <div class="label">Cape</div>
             </div>
         </div>
     </div>
@@ -133,8 +133,13 @@
                     const iconElement = itemElement.querySelector('.icon');
                     const labelElement = itemElement.querySelector('.label');
 
+                    // Clear previous content
+                    iconElement.innerHTML = '';
+                    labelElement.innerHTML = `${labelElement.textContent.split('\n')[0]}`;
+
+                    // Add new content
                     iconElement.innerHTML = `<img src="${randomItem.img_url}" alt="${randomItem.name}">`;
-                    labelElement.innerHTML = `${labelElement.textContent.split('\n')[0]}<br><br>${randomItem.name}`;
+                    labelElement.innerHTML += `<br>${randomItem.name}`;
                 }
             } catch (error) {
                 console.error('Error loading items:', error);

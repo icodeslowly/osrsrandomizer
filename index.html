@@ -24,6 +24,7 @@
         }
         .item {
             display: flex;
+            flex-direction: column;
             align-items: center;
             margin: 10px 0;
         }
@@ -33,7 +34,7 @@
             background-color: #ccc;
             border: 1px solid #999;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -64,44 +65,54 @@
             <div class="item" id="slot_head">
                 <div class="icon">?</div>
                 <div class="label">Head</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_body">
                 <div class="icon">?</div>
                 <div class="label">Body</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_legs">
                 <div class="icon">?</div>
                 <div class="label">Legs</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_hands">
                 <div class="icon">?</div>
                 <div class="label">Hands</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_feet">
                 <div class="icon">?</div>
                 <div class="label">Boots</div>
+                <div class="item-name"></div>
             </div>
         </div>
         <div class="column">
             <div class="item" id="slot_weapon">
                 <div class="icon">?</div>
                 <div class="label">Sword</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_shield">
                 <div class="icon">?</div>
                 <div class="label">Shield</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_weapon_two">
                 <div class="icon">?</div>
                 <div class="label">Two Hand Weapon</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_neck">
                 <div class="icon">?</div>
                 <div class="label">Necklace</div>
+                <div class="item-name"></div>
             </div>
             <div class="item" id="slot_cape">
                 <div class="icon">?</div>
                 <div class="label">Cape</div>
+                <div class="item-name"></div>
             </div>
         </div>
     </div>
@@ -131,15 +142,15 @@
                     const randomItem = items[Math.floor(Math.random() * items.length)];
                     const itemElement = document.getElementById(slot);
                     const iconElement = itemElement.querySelector('.icon');
-                    const labelElement = itemElement.querySelector('.label');
+                    const itemNameElement = itemElement.querySelector('.item-name');
 
                     // Clear previous content
                     iconElement.innerHTML = '';
-                    labelElement.innerHTML = `${labelElement.textContent.split('\n')[0]}`;
+                    itemNameElement.innerHTML = '';
 
                     // Add new content
                     iconElement.innerHTML = `<img src="${randomItem.img_url}" alt="${randomItem.name}">`;
-                    labelElement.innerHTML += `<br>${randomItem.name}`;
+                    itemNameElement.innerHTML = `${randomItem.name}`;
                 }
             } catch (error) {
                 console.error('Error loading items:', error);

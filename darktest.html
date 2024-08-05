@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OSRS Randomizer</title>
     <style>
+        :root {
+            --background-color-light: #ffffff;
+            --text-color-light: #000000;
+            --icon-bg-color-light: #ccc;
+            --icon-border-color-light: #999;
+            --tagline-color-light: #555;
+            --label-color-light: #000000;
+            --item-name-color-light: #000000;
+            --background-color-dark: #121212;
+            --text-color-dark: #ffffff;
+            --icon-bg-color-dark: #333333;
+            --icon-border-color-dark: #555555;
+            --tagline-color-dark: #bbbbbb;
+            --label-color-dark: #cccccc;
+            --item-name-color-dark: #ffffff;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -13,10 +29,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Aligns content to the top */
+            justify-content: flex-start;
             height: 100vh;
-            background-color: #121212; /* Dark background */
-            color: #ffffff; /* Light text color */
+            background-color: var(--background-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s, color 0.3s;
         }
         .container {
             display: flex;
@@ -35,8 +52,8 @@
         .icon {
             width: 40px;
             height: 40px;
-            background-color: #333333; /* Darker icon background */
-            border: 1px solid #555555; /* Darker border */
+            background-color: var(--icon-bg-color-light);
+            border: 1px solid var(--icon-border-color-light);
             border-radius: 50%;
             margin-bottom: 10px;
             display: flex;
@@ -67,21 +84,45 @@
         }
         .tagline {
             font-size: 1.2em;
-            color: #bbbbbb; /* Lighter text color for tagline */
+            color: var(--tagline-color-light);
             margin-top: 10px;
         }
         .header {
-            margin-top: 20px; /* Space from the top */
+            margin-top: 20px;
         }
         .label {
-            color: #cccccc; /* Light text color for labels */
+            color: var(--label-color-light);
         }
         .item-name {
-            color: #ffffff; /* Light text color for item names */
+            color: var(--item-name-color-light);
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .theme-toggle img {
+            width: 30px;
+            height: 30px;
+        }
+        .dark-mode {
+            --background-color-light: var(--background-color-dark);
+            --text-color-light: var(--text-color-dark);
+            --icon-bg-color-light: var(--icon-bg-color-dark);
+            --icon-border-color-light: var(--icon-border-color-dark);
+            --tagline-color-light: var(--tagline-color-dark);
+            --label-color-light: var(--label-color-dark);
+            --item-name-color-light: var(--item-name-color-dark);
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <img src="https://img.icons8.com/ios-filled/50/000000/sun.png" alt="Toggle Theme" id="theme-icon">
+    </button>
     <div class="header">
         <div class="title">OSRS Randomizer</div>
         <div class="tagline">Roll the dice to decide your look. Pick either a sword/shield or the 2h suggestion</div>
@@ -166,6 +207,16 @@
     <button class="random-button" onclick="randomizeItems()">Randomize Items</button>
 
     <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.getElementById('theme-icon');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.src = "https://img.icons8.com/ios-filled/50/000000/moon-symbol.png";
+            } else {
+                themeIcon.src = "https://img.icons8.com/ios-filled/50/000000/sun.png";
+            }
+        }
+
         async function randomizeItems() {
             try {
                 const response = await fetch('items.json');
